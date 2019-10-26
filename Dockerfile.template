@@ -1,0 +1,10 @@
+FROM balenalib/raspberrypi3-debian-python:2.7.16-stretch-build
+
+# Install pygame
+RUN install_packages python-pygame python-dev
+
+# Test it
+RUN python -c "import pygame; print(pygame.version.vernum)"
+
+# Keep container alive
+CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
